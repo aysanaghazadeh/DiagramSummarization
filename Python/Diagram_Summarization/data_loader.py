@@ -9,12 +9,12 @@ def Load_Summaries(directory):
     summaries = submission[['summary', 'filename']]
     return summaries
 
-def Load_Data(directory, summaries):
+def Load_Data(directory):
+    summary_directory = '/Users/aysanaghazadeh/University/Pitt/Research/Diagram_Summarization/ai2d-rst-v1-1/Summaries/summaries.csv'
+    summaries = Load_Summaries(summary_directory)
     data_dir = directory
     filenames = [name for name in os.listdir(data_dir)]
     batch_size = len(list(summaries['filename']))
-    print(len(filenames))
-    print(len(summaries))
     batch = torch.zeros(batch_size, 3, 1500, 1500, dtype=torch.uint8)
     files = []
     summary = []
@@ -51,9 +51,8 @@ def get_padding(image):
 
     return padding
 
-summary_directory = '/Users/aysanaghazadeh/University/Pitt/Research/Malihe/ai2d-rst-v1-1/Summaries/summaries.csv'
-summaries = Load_Summaries(summary_directory)
+# image_directory = '/Users/aysanaghazadeh/University/Pitt/Research/Diagram_Summarization/ai2d-rst-v1-1/images'
+# images, filenames, summary = Load_Data(image_directory)
 
-image_directory = '/Users/aysanaghazadeh/University/Pitt/Research/Malihe/ai2d-rst-v1-1/images'
-images, filenames, summary = Load_Data(image_directory, summaries)
+
 
